@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //   centerTitle: false,
       // ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -33,21 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                ListView(
-                  //scrollDirection: Axis.horizontal,
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: 10,
                   shrinkWrap: true,
-                  children: [
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                    restaurantCard(),
-                  ],
+                  itemBuilder: (context, index) {
+                    return restaurantCard();
+                  },
                 ),
               ],
             ),
@@ -69,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(38.0),
+                borderRadius: BorderRadius.circular(20.0),
                 child: Image.asset(
                   'assets/images/restaurant.jpeg',
                   scale: 3.9,

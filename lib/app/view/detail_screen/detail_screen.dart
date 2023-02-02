@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/app/view/detail_screen/widget/food_menu.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
@@ -11,8 +12,9 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               ClipRRect(
@@ -87,9 +89,44 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                     const Text(
                       'Menu',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
                     ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.food_bank),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        Text('Makanan'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    const FoodMenu(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.local_drink),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        Text('Minuman'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    // nanti diganti
+                    const FoodMenu(),
                   ],
                 ),
               ),
