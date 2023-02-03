@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_app/app/viewModel/restaurant_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,13 +36,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: 10,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return restaurantCard();
+                Consumer<RestaurantProvider>(
+                  builder: (_, restaurant, __) {
+                    return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: restaurant.restaurantList.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        var resName = restaurant.restaurantList[index].name;
+                        var resDescription =
+                            restaurant.restaurantList[index].description;
+                        var resPicture =
+                            restaurant.restaurantList[index].pictureId;
+                        var resCity = restaurant.restaurantList[index].city;
+                        var resRating =
+                            restaurant.restaurantList[index].rating.toString();
+                        return restaurantCard(
+                          resName,
+                          resDescription,
+                          resPicture,
+                          resCity,
+                          resRating,
+                        );
+                      },
+                    );
                   },
                 ),
               ],
@@ -51,7 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget restaurantCard() {
+  Widget restaurantCard(
+    String? name,
+    String? description,
+    String? picture,
+    String? city,
+    String? rating,
+  ) {
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed('/detail');
@@ -64,8 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
-                child: Image.asset(
-                  'assets/images/restaurant.jpeg',
+                child: Image.network(
+                  picture ?? 'empty',
                   scale: 3.9,
                 ),
               ),
@@ -75,8 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Restaurant 1',
+                  Text(
+                    name ?? 'empty',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -93,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         width: 5,
                       ),
-                      Text('St. Somewhare on earth'),
+                      Text(city ?? 'empty'),
                     ],
                   ),
                   SizedBox(
@@ -105,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         width: 5,
                       ),
-                      Text('4.6'),
+                      Text(rating ?? 'empty'),
                     ],
                   )
                 ],

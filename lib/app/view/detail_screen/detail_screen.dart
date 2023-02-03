@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/app/view/detail_screen/widget/drink_menu.dart';
 import 'package:restaurant_app/app/view/detail_screen/widget/food_menu.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -126,7 +127,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       height: 16,
                     ),
                     // nanti diganti
-                    const FoodMenu(),
+                    const DrinkMenu(),
                   ],
                 ),
               ),

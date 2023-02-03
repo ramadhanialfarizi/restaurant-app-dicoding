@@ -29,7 +29,8 @@ class _FoodMenuState extends State<FoodMenu> {
     return SizedBox(
       // width: 200,
       child: Card(
-        clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        //clipBehavior: Clip.antiAlias,
         color: Color.fromARGB(255, 255, 197, 97),
         child: Column(
           children: [
@@ -38,7 +39,7 @@ class _FoodMenuState extends State<FoodMenu> {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
                   'assets/images/food_image.jpg',
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
