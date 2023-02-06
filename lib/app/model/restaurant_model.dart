@@ -3,7 +3,9 @@ class RestaurantModel {
   String? description;
   String? pictureId;
   String? city;
-  int? rating;
+  String? rating;
+  String? foodMenu;
+  String? drinkMenu;
 
   RestaurantModel({
     this.name,
@@ -11,13 +13,19 @@ class RestaurantModel {
     this.pictureId,
     this.city,
     this.rating,
+    this.foodMenu,
+    this.drinkMenu,
   });
 
-  RestaurantModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    description = json['description'];
-    pictureId = json['pictureId'];
-    city = json['city'];
-    rating = json['rating'];
+  factory RestaurantModel.fromJson(Map<dynamic, dynamic> json) {
+    return RestaurantModel(
+      name: json['name'],
+      description: json['description'],
+      pictureId: json['pictureId'],
+      city: json['city'],
+      rating: json['rating'].toString(),
+      foodMenu: json['menus']['foods'][0]["name"],
+      drinkMenu: json['menus']['drinks'][0]["name"],
+    );
   }
 }

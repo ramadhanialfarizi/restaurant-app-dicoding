@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/app/model/restaurant_model.dart';
 import 'package:restaurant_app/app/view/detail_screen/widget/drink_menu.dart';
-import 'package:restaurant_app/app/view/detail_screen/widget/food_menu.dart';
+import 'package:restaurant_app/app/view/detail_screen/widget/food_menu.dart'
+    as food;
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
@@ -12,6 +14,8 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
+    final parameter =
+        ModalRoute.of(context)!.settings.arguments as RestaurantModel;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -22,7 +26,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
-                child: Image.asset('assets/images/restaurant.jpeg'),
+                child: Image.network('${parameter.pictureId}'),
               ),
               const SizedBox(
                 height: 18,
@@ -35,8 +39,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Restaurant 1',
+                    Text(
+                      '${parameter.name}',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
@@ -52,38 +56,40 @@ class _DetailScreenState extends State<DetailScreen> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text('St. Somewhare on earth'),
+                        Text('${parameter.city}'),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
-                        Text('4.6'),
+                        Text('${parameter.rating}'),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    const Text(
+                    Text(
                       'Description',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                      style: TextStyle(fontSize: 15),
+                    Text(
+                      '${parameter.description}',
+                      style: const TextStyle(fontSize: 15),
                     ),
                     SizedBox(
                       height: 30,
@@ -110,7 +116,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     SizedBox(
                       height: 16,
                     ),
-                    const FoodMenu(),
+                    food.FoodMenu(menu: parameter.foodMenu),
                     SizedBox(
                       height: 30,
                     ),
@@ -127,7 +133,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       height: 16,
                     ),
                     // nanti diganti
-                    const DrinkMenu(),
+                    DrinkMenu(menu: parameter.drinkMenu),
                   ],
                 ),
               ),

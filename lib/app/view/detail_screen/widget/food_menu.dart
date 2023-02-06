@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FoodMenu extends StatefulWidget {
-  const FoodMenu({super.key});
+  FoodMenu({super.key, required this.menu});
+
+  String? menu;
 
   @override
   State<FoodMenu> createState() => _FoodMenuState();
@@ -49,8 +51,8 @@ class _FoodMenuState extends State<FoodMenu> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Makanan 1 aaaaa',
+                    Text(
+                      '${widget.menu}',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(

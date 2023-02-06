@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/services.dart';
 import 'package:restaurant_app/app/model/restaurant_model.dart';
 
@@ -9,21 +8,14 @@ class RemoteDataSource {
     try {
       final response =
           await rootBundle.loadString('assets/json_file/restaurant.json');
-      final List<dynamic> data = await json.decode(response)['restaurants'];
+      // json parse to Map
+      var data = json.decode(response);
 
-      /// debuging
-      if (data != null) {
-        print(data.toString());
-        //debugPrint(data);
-      } else {
-        print('kosong');
-      }
+      List<dynamic> restaurantList = data["restaurants"];
+      //final result = RestaurantModel.fromJson(data);
 
-      List<RestaurantModel> restaurantData = [];
-      for (int counter = 0; counter < data.length; counter++) {
-        restaurantData.add(RestaurantModel.fromJson(data[counter]));
-      }
-      return restaurantData;
+      //return result.restaurants;
+      return restaurantList.map((e) => RestaurantModel.fromJson(e)).toList();
     } catch (e) {
       print(e);
       rethrow;
