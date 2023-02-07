@@ -17,8 +17,7 @@ class RemoteDataSource {
       //return result.restaurants;
       return restaurantList.map((e) => RestaurantModel.fromJson(e)).toList();
     } catch (e) {
-      print(e);
-      rethrow;
+      return [];
     }
   }
 }

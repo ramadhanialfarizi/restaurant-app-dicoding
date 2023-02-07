@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FoodMenu extends StatefulWidget {
-  FoodMenu({super.key, required this.menu});
+  const FoodMenu({super.key, required this.menu});
 
-  String? menu;
+  final String? menu;
 
   @override
   State<FoodMenu> createState() => _FoodMenuState();
@@ -12,7 +12,7 @@ class FoodMenu extends StatefulWidget {
 class _FoodMenuState extends State<FoodMenu> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 180,
       width: double.infinity,
       child: ListView.builder(
@@ -33,7 +33,7 @@ class _FoodMenuState extends State<FoodMenu> {
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         //clipBehavior: Clip.antiAlias,
-        color: Color.fromARGB(255, 255, 197, 97),
+        color: const Color.fromARGB(255, 255, 197, 97),
         child: Column(
           children: [
             Expanded(
@@ -53,7 +53,7 @@ class _FoodMenuState extends State<FoodMenu> {
                   children: [
                     Text(
                       '${widget.menu}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 4,

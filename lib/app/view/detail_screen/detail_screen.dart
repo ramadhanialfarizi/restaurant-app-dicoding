@@ -41,19 +41,19 @@ class _DetailScreenState extends State<DetailScreen> {
                   children: [
                     Text(
                       '${parameter.name}',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_pin,
                           color: Colors.blue,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Text('${parameter.city}'),
@@ -77,9 +77,9 @@ class _DetailScreenState extends State<DetailScreen> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Text(
+                    const Text(
                       'Description',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
                       ),
@@ -91,7 +91,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       '${parameter.description}',
                       style: const TextStyle(fontSize: 15),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     const Text(
@@ -101,35 +101,35 @@ class _DetailScreenState extends State<DetailScreen> {
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Icon(Icons.food_bank),
-                        const SizedBox(
+                        SizedBox(
                           width: 6,
                         ),
                         Text('Makanan'),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     food.FoodMenu(menu: parameter.foodMenu),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Icon(Icons.local_drink),
-                        const SizedBox(
+                        SizedBox(
                           width: 6,
                         ),
                         Text('Minuman'),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     // nanti diganti

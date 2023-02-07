@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DrinkMenu extends StatefulWidget {
-  DrinkMenu({super.key, required this.menu});
+  const DrinkMenu({super.key, required this.menu});
 
-  String? menu;
+  final String? menu;
 
   @override
   State<DrinkMenu> createState() => _DrinkMenuState();
@@ -12,11 +12,10 @@ class DrinkMenu extends StatefulWidget {
 class _DrinkMenuState extends State<DrinkMenu> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 180,
       width: double.infinity,
       child: ListView.builder(
-        //physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemCount: 7,
@@ -32,7 +31,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
       // width: 200,
       child: Card(
         clipBehavior: Clip.antiAlias,
-        color: Color.fromARGB(255, 255, 197, 97),
+        color: const Color.fromARGB(255, 255, 197, 97),
         child: Column(
           children: [
             Expanded(
@@ -52,7 +51,7 @@ class _DrinkMenuState extends State<DrinkMenu> {
                   children: [
                     Text(
                       '${widget.menu}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 4,
